@@ -12,12 +12,12 @@ import tensorflow as tf
 
 class Trainer(object):
 
-    def __init__(self, config, mode, net, clip_op_lambda):
+    def __init__(self, config, mode, net, clip_op_lambda = None):
         self.config = config
         self.mode = mode
         
         # Create output-dir
-        if not os.path.exists(self.config.dir_name): os.mkdir(self.config.dir_name)
+        if not os.path.exists(self.config.dir_name): os.makedirs(self.config.dir_name)
 
         if self.mode == "train":
             log_suffix = '_' + str(self.config.train.restore_iter) if self.config.train.restore_iter > 0 else ''
